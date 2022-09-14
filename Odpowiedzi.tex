@@ -8,6 +8,7 @@
 \usepackage{amsmath}
 \usepackage{indentfirst}
 \usepackage{pdfpages}
+\usepackage{float}
 
 \usepackage{tikz}
 %\usepackage{etoolbox} % for \ifthen
@@ -1541,8 +1542,36 @@ catch(int w)
 				a
 		
 		\newpage\section{Inżynieria Oprogramowania}
-			\subsection{\color{red}Standardowe metodyki procesu wytwórczego oprogramowania.}
-				a
+			\subsection{Standardowe metodyki procesu wytwórczego oprogramowania.}
+				Metodyka wytwarzania oprogramowania to ustandaryzowany zestaw procedur i procesów wykorzystywany podczas wytwarzania oprogramowania.
+                Składniki metodyki to:
+                \begin{itemize}
+                    \item formalizmy, modele opisu rzeczywistości (dziedziny problemu), jej 
+                    statyki i dynamiki;
+                    \item strukturalizacja procesu (cykl życia);
+                    \item szczegółowe metody i techniki dokumentowania;
+                    \item narzędzia;
+                    \item wymagania merytoryczne wobec poszczególnych twórców;
+                    \item kryteria oceny jakości projektu i systemu;
+                    \item zasady planowania i kierowania rozwojem systemu
+                \end{itemize}
+                Jako przykładowe metodyki można wymienić:
+                \begin{itemize}
+                    \item standardowy kaskadowy proces wytwarzania oprogramowania - poszczególne fazy procesu wytwarzania następują jedna po drugiej, brak możliwości powrotu do poprzedniego etapu. Plusem jest prostsze zarządzanie i rozplanowanie poszczególnych etapów (zarówno ich czasu trwania, jak i kosztów), minusem jest duże ryzyko propagacji błędów oraz ograniczona możliwość feedbacku od klienta.
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/kaskadowy.jpg}
+                        \caption{Kaskadowy proces wytwarzania oprogramowania}
+                        \label{fig:twojastara1}
+                    \end{figure}
+                    \item iteracyjny model wytwarzania, gdzie możliwy jest powrót do poprzednich etapów wraz z dalszym rozwojem wymagań projektowych
+                    \begin{figure}
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/iteracyjmy.jpg}
+                        \caption{Iteracyjny proces wytwarzania oprogramowania}
+                        \label{fig:twojastara2}
+                    \end{figure}
+                \end{itemize}
 			\newpage\subsection{Metodyki zwinne (agile).}
 				\subparagraph{Programowanie zwinne (agile)} - są to metodyki wytwarzania oprogramowania które są
 				oparte na programowaniu iteracyjno-przyrostowym oraz na obserwowaniu czy wymagania
@@ -1559,12 +1588,12 @@ catch(int w)
 					\item mała ilość dokumentacji
 				\end{itemize}
 			
-				Manifest Agile (ważniejsze > mniej ważne [ale występuje]):
+				Manifest Agile (ważniejsze \(\rightarrow\) mniej ważne [ale występuje]):
 				\begin{itemize}
-					\item Ludzie i interakcje > Procesy i narzędzia
-					\item Działające oprogramowanie > Obszerna dokumentacja
-					\item Współpraca z klientem > Formalne ustalenia
-					\item Reagowanie na zmiany > Podążanie za planem
+					\item Ludzie i interakcje \(\rightarrow\) Procesy i narzędzia
+					\item Działające oprogramowanie \(\rightarrow\) Obszerna dokumentacja
+					\item Współpraca z klientem \(\rightarrow\) Formalne ustalenia
+					\item Reagowanie na zmiany \(\rightarrow\) Podążanie za planem
 				\end{itemize}
 		
 				Etapy Agile:
@@ -1654,17 +1683,449 @@ catch(int w)
 					\centering\includegraphics[scale=0.6]{tdd.png}
 				\end{figure}
 				\end{enumerate}
-			\newpage\subsection{\color{red}Metody testowania oprogramowania.}
-				a
-			\newpage\subsection{\color{red}Walidacja i weryfikacja oprogramowania.}
-				a
-			\newpage\subsection{\color{red}Diagramy UML (przypadków użycia, klas, aktywności, sekwencji, stanów, obiektów, wdrożenia).}
-				a
-			\newpage\subsection{\color{red}Wzorce projektowe programowania obiektowego.}
-				a
-			\newpage\subsection{\color{red}Wzorce architektoniczne.}
-				a
-		
+			\newpage\subsection{Metody testowania oprogramowania.}
+				\begin{itemize}
+                    \item Analiza dokumentacji - najwcześniejszy etap, przed pisaniem kodu. Sprawdzenie, czy wymagania stawiane przez klienta zostały w całości i prawidłowo zaimplementowane do dokumentacji technicznej. Kontrolowana jest też spójność poszczególnych dokumentów.
+                    \item Testy systemowe wykonuje się po zaimplementowaniu systemu/programu, ale przed jego wdrożeniem. Zasadniczym celem jest, czy w kodzie nie wystąpiły błędy mające wpływ na stabilność produktu. Po wykryciu błędów, możliwe jest ich w miarę szybkie usunięcie, przez bezpośrednią korektę kodu. Zaimplementowane testy powinny odzwierciedlać przewidziane w dokumentacji przypadki użycia.
+                    \item Testy integracyjne umożliwiają przetestowanie każdego nowego elementu włączanego do systemu. Testuje się zarówno każdą  nową funkcjonalność, jak i to, czy jej pojawienie się ma wpływ na wcześniejsze zachowanie się systemu traktowanego jako całość. Oprogramowanie każdorazowo włączane do istniejącego i działającego już systemu powinno być uprzednio przetestowane systemowo, pod kątem błędów wewnętrznych, i dopiero potem integrowane z całością systemu.
+                    \item Testy regresji - Regresja jest zjawiskiem niezamierzonej utraty jakiejś funkcjonalności powstałym w nowej wersji programu. Testy regresji wykonuje się każdorazowo, gdy do systemu wprowadzamy nową funkcjonalność, moduł, bibliotekę lub komponent. Celem testów regresji jest sprawdzenie, czy dokonane zmiany nie wpłynęły negatywnie na sposób funkcjonowania systemu (przy założeniu, że działał uprzednio w sposób prawidłowy). Nowa funkcjonalność powinna być przetestowana osobno, zarówno w ramach testów systemowych, jak i integracyjnych, sprawdzających jej połączenia z innymi elementami systemu.
+				\end{itemize}
+			\newpage\subsection{Walidacja i weryfikacja oprogramowania.}
+                Walidacja oprogramowania jest procesem sprawdzania czy 
+                oprogramowanie jest zgodne z oczekiwaniami użytkownika (potwierdzenie w 
+                sposób udokumentowany i zgodny z założeniami, że procedury, procesy, 
+                urządzenia, materiały, czynności i systemy rzeczywiście prowadzą do 
+                zaplanowanych wyników).
+                Walidacja to sprawdzenie, czy produkt końcowy zawiera w sobie wszystkie 
+                wymagane przez klienta funkcjonalności, czy działa stabilnie i prawidłowo 
+                komunikuje się z pozostałymi systemami bądź użytkownikami. W walidacji 
+                produktu największe znaczenie mają analiza dokumentacji oraz testy 
+                akceptacyjne przeprowadzane przez użytkownika końcowego. W efekcie 
+                sprowadza się to do kontroli oprogramowania pod względem formalnym.
+
+                Weryfikacja oprogramowania jest procesem sprawdzenia, czy wytwarzane 
+                oprogramowanie jest zgodnie z wytycznymi zasad programowania, z 
+                zastosowaniem najbardziej odpowiednich metod, języka programowania i 
+                najbardziej wydajnych algorytmów. Weryfikacja dokonywana jest podczas 
+                testów systemowych pojedynczego produktu, oraz testów integracyjnych, po 
+                wprowadzeniu produktu do istniejącego już i działającego środowiska 
+                informatycznego.
+                Weryfikację z reguły przeprowadza się na dwa sposoby – statyczny oraz 
+                dynamiczny. Testowanie statyczne oznacza inspekcję kodu. Inspekcja kodu 
+                wykonywana jest przed skompilowaniem programu, i ma na celu wykrycie, czy 
+                tekst programu jest spójny, i czy nie zawiera ewidentnych błędów lub/i 
+                zbędnych fragmentów kodu mogących mieć wpływ na wydajność systemu. 
+                Weryfikacja dynamiczna przeprowadzana jest już po uruchomieniu 
+                skompilowanego programu, z użyciem testowych danych wejściowych, i 
+                kontroluje zachowanie systemu widoczne dla użytkownika
+			\newpage\subsection{Diagramy UML (przypadków użycia, klas, aktywności, sekwencji, stanów, obiektów, wdrożenia).}
+				\textbf{Diagramy przypadków użycia}\\
+                Diagramy przypadków użycia pozwalają opisanie interakcji pomiędzy tworzonym systemem komputerowym a użytkownikiem (aktorem). Przypadek użycia jest dobrze określoną interakcją między użytkownikiem, a systemem komputerowym. Odwzorowuje wybrane (lub wszystkie) funkcje systemu w sposób jaki będą je widzieć przyszli użytkownicy. Pozwala zapomnieć o strukturze (architekturze) systemu, jego detalach logicznych i technicznych oraz nakazuje skoncentrować się na zewnętrznych funkcjach systemu.
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[width=\textwidth/2]{images/use_case.jpg}
+                    \caption{Przykładowy diagram przypadków użycia}
+                    \label{fig:twojastara30}
+                \end{figure}
+                Przypadki użycia mogą dziedziczyć po innych przypadkach, tj. dziedziczy zachowanie innego przypadku i może je rozwijać/modyfikować.
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[width=\textwidth/3]{images/uc_dziedziczenie.jpg}
+                    \caption{Przypadek użycia \textit{p2} dziedziczy po \textit{p1}}
+                    \label{fig:twojastara31}
+                \end{figure}
+                Przypadki użycia mogą pozostawać w relacji zależności przebiegu podstawowego (include), gdzie p1 zawsze włącza p2, albo w relacji przebiegu opcjonalnym (extend), gdzie czasami p1 włącza p2 (p1 jest rozszerzane o p2).
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[width=\textwidth/3]{images/uc_include.jpg}
+                    \caption{Przebieg podstawowy: p1 \(\rightarrow\) p2}
+                    \label{fig:twojastara32}
+                \end{figure}
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[width=\textwidth/3]{images/uc_extend.jpg}
+                    \caption{Przebieg opcjonalny: p1 \(\rightarrow\) czasami p2}
+                    \label{fig:twojastara33}
+                \end{figure}
+				\textbf{Diagramy klas}\\
+                Diagramy klas wizualizują klasy obecne w aplikacji, zawarte w nich metody i pola, a także relacje pomiędzy nimi.\\
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[width=0.6\textwidth]{images/class_diagram.jpg}
+                    \caption{Zawartość ikony klasy w UML}
+                    \label{fig:twojastara34}
+                \end{figure}
+                Klasy polimorficzne - klasy, które mają jedną lub więcej operację wirtualną. Operacje wirtualne oznaczamy \textit{kursywą}.\\
+                Klasy abstrakcyjne - klasy, które mają jedną lub więcej operację czysto wirtualną (bez implementacji w klasie bazowej). Klasę abstrakcyjną oznaczamy poprzez zapisanie nazwy klasy \textit{kursywą}.\\
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.3\textwidth]{images/class_inheritance.jpg}
+                    \caption{\textbf{Generalizacja} to w sumie dziedziczenie, tylko że w języku UML. Oznaczane przez linię ze strzałką w stronę klasy bazowej.}
+                    \label{fig:twojastara35}
+                \end{figure}
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{images/class_zal.jpg}
+                    \caption{\textbf{Zależność} klas oznacza, że jedna klasa wykorzystuje drugą w jednej ze swoich operacji - jako typ zwracany, argument, lub gdzieś w implementacji. Oznaczane przez przerywaną linię ze strzałką w stronę klasy niezależnej.}
+                    \label{fig:twojastara36}
+                \end{figure}
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{images/class_powiazanie.jpg}
+                    \caption{\textbf{Powiązanie} oznacza, że obiekty są połączone poprzez atrybuty danych klas (jedna klasa posiada pole typu drugiej). Oznaczane przez linię ciągłą ze strzałką w stronę klasy niezależnej). Powiązanie może być realizowane poprzez dodatkową klasę powiązania, zawierającą referencję do obiektów obu klas. Linia ciągła wtedy posiada rozgałęzienie linią przerywaną do klasy powiązania.}
+                    \label{fig:twojastara37}
+                \end{figure}
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{images/class_agg_prosta.jpg}
+                    \caption{\textbf{Agregacja prosta} jest szczególnym rodzajem powiązania, reprezentującym związek część-całość, przy czym czas życia obiektów nie jest zależny, a jeden obiekt może być agregowany przez wiele klas agregujących. Oznaczane poprzez linię z pustym diamentem w stronę klasy agregującej (całości).}
+                    \label{fig:twojastara38}
+                \end{figure}
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{images/class_agg_calkowita.jpg}
+                    \caption{\textbf{Agregacja całkowita} to związek część-całość, charakteryzujący się relacją wyłącznej własności czasu życia całości i części (części tworzone są wraz z utworzeniem całości i niszczone wraz z zniszczeniem całości, niemożliwe jest dodanie/usunięcie poszczególnych części w międzyczasie). Oznaczane poprzez linię z wypełnionym diamentem w stronę klasy agregującej.}
+                    \label{fig:twojastara39}
+                \end{figure}
+				\textbf{Diagramy aktywności}\\
+                Diagramy aktywności podobne są do schematów blokowych. Mogą zostać wykorzystane do modelowania przepływu czynności i sterowania pomiędzy elementami systemu. Można je też wykorzystać do modelowania pojedynczych funkcji/operacji. Na diagramach aktywności, zwłaszcza tych używanych do modelowania funkcji i operacji, mogą znajdywać się elementy symbolizujące pojedyncze etapy podczas wykonywania operacji, instrukcje warunkowe i rozgałęzienia, oraz punkty rozpoczęcia i zakończenia operacji.\\
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{images/d_activity.jpg}
+                    \caption{Przykładowe diagramy aktywności (ogólny i szczegółowy)}
+                    \label{fig:twojastara40}
+                \end{figure}
+				\textbf{Diagramy sekwencji}\\
+                Diagramy sekwencji (przebiegu) pozwalają modelować wzajemną interakcję obiektów w funkcji czasu jej trwania. Interakcja traktowana jest jako ciąg zdarzeń występujących w czasie w określonym porządku. Diagram przebiegu składa się z przedstawianych w standardowej postaci obiektów, komunikatów oraz osi czasu. Obiekty mogą na siebie wzajemnie oddziaływać modyfikując stan swoich atrybutów lub żądając realizacji usług w postaci udostępnianych operacji. Żądanie wykonania operacji nazywane jest komunikatem. Komunikaty dzielimy na 3 rodzaje: synchroniczny, asynchroniczny, zwrotny.               \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{images/d_sequence_coms.jpg}
+                    \caption{Oznaczenia komunikatów}
+                    \label{fig:twojastara41}
+                \end{figure}
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{images/d_sequence.jpg}
+                    \caption{Przykładowy diagram sekwencji. Warto zwrócić uwagę na nazwy wywoływanych operacji przy komunikatach oraz na bloki oznaczające czas trwania operacji}
+                    \label{fig:twojastara42}
+                \end{figure}
+				\textbf{Diagramy obiektów}\\
+                Diagramy obiektów wizualizują faktycznie istniejące obiektu w systemie (nie klasy, a utworzone na ich podstawie obiekty). Nazwa obiektu oraz nazwa reprezentującej przez niego klasy zawsze są podkreślone. Na diagramach obiektów możemy oznaczać obiekty nazwane, obiekty anonimowe (nieznana jest ich nazwa), obiekty osierocone (nie są skojarzone z żadną klasą/interfejsem), obiekty aktywne (wywołujące działania innych obiektów, implementacyjnie reprezentowane poprzez oddzielny wątek), a także wiele obiektów.
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.8\textwidth]{images/d_objects.jpg}
+                    \caption{Oznaczenia różnych typów obiektów na diagramie obiektów}
+                    \label{fig:twojastara43}
+                \end{figure}
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.6\textwidth]{images/d_objects_atributes.jpg}
+                    \caption{Opisanie atrybutów obiektów: nazwanego i anonimowego}
+                    \label{fig:twojastara44}
+                \end{figure}
+				\textbf{Diagramy stanów}\\
+                Diagramy stanów obrazują sposób, w jaki elementy modelu zmieniają w czasie swoje własności w odpowiedzi na różnego rodzaju zdarzenia i interakcje. Podstawowym elementem tego typu diagramów jest ikona stanu, która może być przedstawiona w sposób uproszczony, poprzez podanie nazwy stanu, lub w sposób szczegółowy, z dodatkowym wyszczególnieniem wartości atrybutów oraz podstawowych, aktualnie wykonywanych operacji i zdarzeń. Symbol stanu oznaczany jest prostokątem z zaokrąglonymi narożnikami. Czarne kółko oznacza punkt wejścia do stanu, strzałka jest symbolem przejścia, zaś kółko z czarną kropką oznacza punkt wyjścia ze stanu.\\
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.8\textwidth]{images/d_state.jpg}
+                    \caption{jakiś przykładowy diagram stanu (uproszczony)}
+                    \label{fig:twojastara45}
+                \end{figure}
+				\textbf{Diagramy wdrożenia}\\
+                Diagramy wdrożenia służą do zobrazowania fizycznej architektury projektowanego systemu. Podstawowym elementem diagramu wdrożenia jest węzeł. W zależności od tego, co chcemy przekazać, można używać wielu oznaczeń dla węzłów. W przedstawieniu architektury sprzętowej podstawowymi są \textit{<<processor>>}, który może wykonać kod programu lub komponentu, i urządzenie \textit{<<device>>}, które jest przyłączone do węzła i współpracuje z programem (np. drukarka). Do oznaczania konkretnego sprzętu stosuje się też takie stereotypy, jak: \textit{<<pc server>>}, \textit{<<pc client>>} czy \textit{<<user pc>>}. W trakcie modelowania architektury programowej podstawowymi stosowanymi stereotypami są \textit{<<artefact>>}, \textit{<<executable>>}, \textit{<<database>>}, \textit{<<library>>} itp.
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{images/d_deploy.jpg}
+                    \caption{jakiś przykładowy diagram wdrożenia}
+                    \label{fig:twojastara46}
+                \end{figure}
+    
+			\newpage\subsection{Wzorce projektowe programowania obiektowego.}
+				Wzorce projektowe programowania obiektowego (ang. design patterns) – umiejscowione na poziomie interakcji między klasami będącymi podstawowymi elementami programu zorientowanego obiektowo. Są to wzorce pośredniego poziomu, w ogólności określające strukturę i zachowanie komponentów oraz zestawów klas systemu. Wzorce projektowe programowania obiektowego identyfikują i opisują pewną abstrakcję, której poziom znajduje się powyżej poziomu abstrakcji pojedynczej klasy.
+                Dzielą się na 3 kategorie:
+                \begin{itemize}
+                        \item \textbf{wzorce konstrukcyjne} (ang. creational design patterns) wykorzystywane do pozyskiwania obiektów zamiast bezpośredniego tworzenia egzemplarzy klas
+                        \item \textbf{wzorce strukturalne} (ang. structural design patterns) pomagające łączyć obiekty w większe struktury
+                        \item \textbf{wzorce operacyjne} (ang. behavioral design patterns) służące do definiowania komunikacji pomiędzy obiektami oraz kontrolowania przepływu danych w złożonym programie
+                \end{itemize}
+                \textbf{Wzorce konstrukcyjne}
+                \begin{itemize}
+                    \item \textbf{Singleton}
+                    \begin{itemize}
+                        \item klasa powinna mieć tylko jeden egzemplarz dostępny dla jej klientów;
+                        \item powinno być możliwe rozbudowywanie tego egzemplarza przez 
+                        definiowanie podklas, a klienci powinni móc używać rozszerzonego 
+                        egzemplarza bez modyfikowania swojego kodu
+                    \end{itemize}
+                    Prywatny konstruktor, jedna instancja na całą aplikację
+                    \item \textbf{Fabryka abstrakcyjna}
+                    \begin{itemize}
+                        \item system ma być niezależny od sposobu tworzenia swoich obiektów i ich 
+                        reprezentacji;
+                        \item system powinien być konfigurowany przy użyciu jednej z wielu rodzin 
+                        obiektów z uwzględnieniem pewnego spójnego kryterium doboru;
+                        \item grupa związanych ze sobą obiektów jest zaprojektowana tak, by te obiekty 
+                        były używane razem;
+                        \item istnieje potrzeba dostarczenia biblioteki klas, posługując się jedynie ich 
+                        interfejsami, a nie implementacjami
+                    \end{itemize}
+                    W tym przypadku mamy abstrakcyjną fabrykę i abstrakcyjne produkty tworzone przez tą fabrykę i to z nimi wchodzi w interakcję użytkownik (klient).
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/abstract_factory.jpg}
+                        \caption{Diagram klas dla wzorca fabryki abstrakcyjnej}
+                        \label{fig:twojastara6}
+                    \end{figure}
+                    \item \textbf{Prototyp} 
+                    \begin{itemize}
+                        \item system powinien być niezależny od sposobu tworzenia swoich obiektów, 
+                        sposobów ich składania i reprezentowania;
+                        \item egzemplarze klas, które należy tworzyć powinny być specyfikowane w 
+                        czasie wykonywania programu, np. przez dynamiczne ładowanie, lub/i
+                        \item istnieje potrzeba uniknięcia budowania hierarchii klas, lub/i
+                        \item stan obiektów klasy może przyjmować tylko jedną z kilku różnych wartości 
+                        – z reguły jest wówczas wygodniej wcześniej zdefiniować odpowiednią 
+                        liczbę prototypów i odpowiednio je klonować zamiast „ręcznego” tworzenia 
+                        egzemplarzy klasy (za każdym razem z odpowiednim stanem).
+                    \end{itemize}
+                    Wzorzec prototypu można wykorzystać w sytuacji, gdzie w programie będziemy mieli dużo obiektów o takim samym lub zbliżonym stanie. Zaletą tego wzorca jest oddelegowanie odpowiedzialności za klonowanie do samych obiektów, które mają być sklonowane. Wzorzec implementuje się poprzez zdefiniowanie abstrakcyjnego interfejsu definiującego metody klonujące. Klasy, które mają mieć możliwość klonowania, implementują tą abstrakcję. Możliwe jest też zastosowanie dodatkowego obiektu będącego rejestrem prototypów, który agreguje i udostępnia obiekty możliwe do sklonowania.
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/prototype.jpg}
+                        \caption{Diagram klas dla wzorca prototypu}
+                        \label{fig:twojastara7}
+                    \end{figure}
+                    \item \textbf{Metoda wytwórcza}
+                    \begin{itemize}
+                        \item klasa nie może przewidzieć, których klas obiekty będzie kreować;
+                        \item klasa żąda, aby jej podklasy specyfikowały tworzone przez nią obiekty;
+                        \item klasy przekazują odpowiedzialność za tworzenie obiektu (i zdecydowanie, jakiego typu będzie to obiekt) do 
+                        dokładnie jednej z kilku podklas.
+                    \end{itemize}
+                    Za tworzenie obiektów danego typu odpowiedzialna jest metoda wytwórcza, nie kod klienta (zamiast np. jawnego wywołania konstruktora \textit{new}). Wzorzec składa się z dwóch ról: \textit{kreatora} - abstrakcji deklarującej metodę tworzącą produkt, konkretne implementacje tego interfejsu nadpisują tą metodę i definiują sposób, w jaki tworzony jest produkt; oraz \textit{produktu} - abstrakcji definiującej produkty tworzone przez kreatora, produkty tworzone przez konkretne implementacje kreatora implementują ten wspólny interfejs. 
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/factory_method.jpg}
+                        \caption{Diagram klas dla wzorca metody abstrakcyjnej}
+                        \label{fig:twojastara8}
+                    \end{figure}
+                    \item \textbf{Budowniczy}
+                    \begin{itemize}
+                        \item algorytm tworzenia złożonego obiektu powinien być niezależny od 
+                        konstrukcji części składowych tego obiektu i sposobu ich łączenia;
+                        \item proces konstruowania powinien uwzględnić różne reprezentacje 
+                        konstruowanego obiektu.
+                    \end{itemize}
+                    We wzorcu budowniczego to \textit{Budowniczy} jest odpowiedzialny za zbudowanie konkretnego, rozbudowanego \textit{Produktu}. Interfejs budowniczego udostępnia metody służące do tworzenia części składowych produktu. Metoda zwracania wyniku jest definiowana w konkretnych implementacjach. \textit{Dyrektor} odpowiedzialny jest za interakcję z Budowniczym i wywołanie jego metod w odpowiedniej kolejności. Wzorzec ten znajduje zastosowanie, kiedy tworzenie Produktu jest rozbudowanym procesem, składającym się z wielu (czasami opcjonalnych) etapów. Warto go też stosować wtedy, kiedy skonstruowany Produkt może przyjmować wiele reprezentacji (np. są klasy rozszerzające obiekt Produkt).
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/bob.jpg}
+                        \caption{Diagram klas dla wzorca budowniczego}
+                        \label{fig:twojastara9}
+                    \end{figure}
+                \end{itemize}
+                \textbf{Wzorce strukturalne}
+                \begin{itemize}
+                    \item \textbf{Adapter} powinien być stosowany, gdy:
+                    \begin{itemize}
+                        \item istnieje konieczność wykorzystania istniejącej klasy, jednak jej interfejs nie 
+                        odpowiada potrzebom;
+                        \item istnieje konieczność utworzenia klasy wielokrotnego użytku, która 
+                        współpracuje z niepowiązanymi klasami, które nie mają zgodnych 
+                        interfejsów;
+                    \end{itemize}
+                    Adapter służy do adaptacji interfejsów obiektowych, tak aby możliwa była 
+                    współpraca obiektów o niezgodnych typach. Struktura wzorca składa się z ról: \textit{Target}, \textit{Adaptee}, \textit{Adapter} oraz klienta. Target jest abstrakcją z reguły implementowaną jako interfejs, którego oczekuje klient. Elementem dostarczającym żądanej przez klienta funkcjonalności jest Adaptee. Rolą adaptera, który implementuje typ Target, jest przetłumaczenie wywołania metod należących do typu Target poprzez wykonanie innych, specyficznych metod z klasy Adaptee. Dzięki temu klient współpracuje z obiektem klasy Adapter realizującym akceptowany przez siebie interfejs Target, jednocześnie wykorzystując funkcjonalność dostarczoną przez Adaptee.
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/adapter.jpg}
+                        \caption{Diagram klas dla wzorca adaptera}
+                        \label{fig:twojastara20}
+                    \end{figure}
+                    \item \textbf{Dekorator} pozwala na rozszerzenie funkcjonalności danego obiektu bez ingerencję w niego. Klasa abstrakcyjna \textit{Component} jest z reguły implementowana w postaci interfejsu, co oznacza, że jest wspólnym interfejsem dla wszystkich klas, których funkcjonalność będzie poszerzana/dekorowana. Interfejs ten realizuje klasa \textit{ConcreteComponent}, która jest odpowiedzialna za podstawową funkcjonalność systemu. Klasa \textit{Decorator} poprzez prywatny wskaźnik agreguje interfejs Component. Po otrzymaniu żądania wykonania określonej operacji \textit{operation()}, dekorator deleguje żądanie do obiektu Component, a następnie opcjonalnie wykonuje dodatkową, specyficzną operację \textit{AddedBehaviour()}. Dzięki temu dodanie do obiektu nowej funkcjonalności polega na utworzeniu dekoratora i przekazaniu mu obiektu dekorowanego jako wywołania. W sytuacji, gdy każdy element dekorujący (klasy \textit{ConcreteDecoratorA} i \textit{ConcreteDecoratorB}) dodaje do docelowego obiektu dekorowanego ConcreteComponent tylko jedną funkcję, wówczas dekorując ten sam docelowy obiekt wielokrotnie uzyskujemy efekt osiągnięcia żądanej sumarycznej funkcjonalności.
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/decorator.jpg}
+                        \caption{Diagram klas dla wzorca dekoratora}
+                        \label{fig:twojastara21}
+                    \end{figure}
+                    \item \textbf{Fasada} to wzorzec pozwalający na udostępnienie konkretnych funkcjonalności, będących częścią jakiegoś bardziej rozbudowanego systemu. Z fasady można skorzystać, kiedy konieczne będzie użycie zewnętrznej biblioteki lub API, aczkolwiek w kodzie klienckim wykorzystywana będzie tylko część jej funkcjonalności. Wywołanie funkcji tej biblioteki/API można wyodrębnić do klasy \textit{Facade}, która udostępni uproszczony zestaw funkcjonalności.
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/facade.jpg}
+                        \caption{Diagram klas dla wzorca fasady}
+                        \label{fig:twojastara22}
+                    \end{figure}
+                    \item \textbf{Kompozyt} może zostać wykorzystany, kiedy chcemy wymodelować hierarchię obiektów w postaci drzewa. Drzewo to będzie składać się z obiektów klasy \textit{Component}, po których dziedziczą obiekty klasy \textit{Leaf} (będące finalnym elementem w gałęzi drzewa), oraz obiekty klasy \textit{Composite}, agregujące kolejne obiekty Component. Interfejs Component definiuje też metodę \textit{Operation()}, która jest implementowana w różny sposób w klasach Leaf i Composite - Composite deleguje wykonanie operacji do agregowanych do niego obiektów, natomiast Leaf wykonuje jakąś konkretną operację. Zastosowanie tego wzorca umożliwia też kodowi klienckiemu na dostęp do struktury drzewa poprzez interakcję z korzeniem.
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/composite.jpg}
+                        \caption{Diagram klas dla wzorca kompozytu}
+                        \label{fig:twojastara23}
+                    \end{figure}
+                    \item \textbf{Pyłek} to wzorzec pozwalający na zredukowanie zużycia pamięci w przypadku występowania wielu obiektów o podobnym stanie. Dane współdzielone przez wiele obiektów są przechowywane w klasie \textit{Flyweight}. Obiekty tej klasy mogą być tworzone i zarządzane przez dodatkową fabrykę pyłków. W ten sposób dane unikalne dla danego obiektu pozostają w obiekcie, natomiast te współdzielone mogą być przechowywane poprzez agregację obiektu Flyweight.  
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/flyweight.jpg}
+                        \caption{Diagram klas dla wzorca pyłku}
+                        \label{fig:twojastara24}
+                    \end{figure}
+                    \item \textbf{Most} jest wzorcem, który rozdziela hierarchie klas na dwie grupy - abstrakcję i implementację. \textit{Abstraction} deklaruje interfejs implementowanych obiektów. Element abstrakcyjny \textit{Implementor} deklaruje interfejs dla klas stanowiących implementację. Klasy implementujące Abstraction wykorzystują obiekty klas realizujących interfejs Implementor, nie posiadając wiedzy, którą z klas realizujących (\textit{ConcreteImplementorA} lub \textit{ConcreteImplementorB}) aktualnie reprezentują. Dzięki temu osiągnięta została ich niezależność.
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/most.jpg}
+                        \caption{Diagram klas dla wzorca mostu}
+                        \label{fig:twojastara25}
+                    \end{figure}
+                    \item \textbf{Pełnomocnik} (proxy) to model pozwalający na zastąpienie obiektu danej klasy jego pełnomocnikiem. Obiekty \textit{RealSubject} i \textit{Proxy} implementują wspólny interfejs \textit{Subject}. Obiekt Proxy agreguje obiekt RealSubject i to on zarządza tym obiektem oraz podejmuje decyzje dotyczące tworzenia go oraz przekazania mu kontroli. Pełni w ten sposób funkcję ochronną i kontrolną.
+                \end{itemize}
+                \textbf{Wzorce operacyjne}
+                \begin{itemize}
+                    \item \textbf{Łańcuch odpowiedzialności} składa się z wielu połączonych ze sobą interfejsów, posiadających referencję do następnego obiektu w łańcuchu. Klient inicjalizuje łańcuch poprzez wywołanie wspólnej metody (zdefiniowanej w interfejsie) w pierwszym obiekcie. Poszczególne klasy decydują, czy obsłuży żądanie, czy przekaże je do następnej klasy.
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/chain_responsibilties.jpg}
+                        \caption{Diagram klas dla wzorca łańcucha odpowiedzialności}
+                        \label{fig:twojastara9}
+                    \end{figure}
+                    \item \textbf{Polecenie} jest wzorcem wykorzystywanym do hermetyzacji żądań jako obiektów, zawierających wszystkie niezbędne pola do wykonania danego żądania (np. parametry, obiekt który ma być "odbiorcą" polecenia). Interfejs \textit{Command} deklaruje metodę reprezentującą polecenie do wykonania. Implementacja \textit{ConcreteCommand} zawiera dodatkowo referencję do \textit{Reciever}, będącym odbiorcą polecenia. \textit{Invoker} odpowiada za wywołanie komendy. W tym przypadku kod kliencki wchodzi w interakcję z odbiorcą komendy i konkretną implementacją. Interfejs definiujący polecenie jest przed nim ukryty, ukryty może być też Invoker (choć nie musi).
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/command.jpg}
+                        \caption{Diagram klas dla wzorca polecenia}
+                        \label{fig:twojastara10}
+                    \end{figure}
+                    \item \textbf{Interpreter} jest wzorcem podobnym w budowie do wzorca Kompozytu. W przeciwieństwie do niego służy ona do interpretacji poleceń/wyrażeń innego wynika. Język jest rozkładany na części gramatyczne. Dodatkowo mamy też klasę \textit{Context}, służącą do przechowywania informacji o wartościach interpretowanego polecenia.
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/interpreter.jpg}
+                        \caption{Diagram klas dla wzorca interpretera}
+                        \label{fig:twojastara11}
+                    \end{figure}
+                    \item \textbf{Iterator} jest wzorcem udostępniającym ujednolicone metody dostępu do elementów w kolekcji, bez wchodzenia w szczegóły implementacji iteratora/kolekcji. Głównymi elementami są interfejs \textit{Iterator}, definiujący operacje konieczne do dostępu do elementów do kolekcji, i interfejs \textit{Aggregate} (kolekcja), udostępniający metodę tworzącą/zwracającą konkretną implementację iteratora.
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/iterator.jpg}
+                        \caption{Diagram klas dla wzorca iteratora}
+                        \label{fig:twojastara12}
+                    \end{figure}
+                    \item \textbf{Mediator} to wzorzec definiujący komunikację pomiędzy wieloma obiektami implementującymi ten sam interfejs. Zamiast definiować zależność obiektów od siebie, posiadają one referencję do obiekty \textit{Mediator}, który odpowiada za realizację komunikacji pomiędzy nimi.
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/mediator.jpg}
+                        \caption{Diagram klas dla wzorca mediatora}
+                        \label{fig:twojastara13}
+                    \end{figure}
+                    \item \textbf{Memento} jest wzorem umożliwiającym zapisanie i przywrócenie poprzedniego stanu danego obiektu. Składa się on z 3 głównych klas - \textit{Originator} to obiekt, którego stan zapisujemy/wczytujemy. To on posiada możliwość utworzenia migawki (Memento) i otworzenia jej. Obiekty klasy \textit{Memento} zawierają stan Originatora w momencie tworzenia migawki. Klasa \textit{Caretaker} jest odpowiedzialna na przechowywanie obiektu/obiektów Memento, nie ma ona możliwości bezpośredniego dostępu do danych zapisanych w stanie migawki.
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/memento.jpg}
+                        \caption{Diagram klas dla wzorca memento}
+                        \label{fig:twojastara14}
+                    \end{figure}
+                    \item \textbf{Obserwator} to wzorzec pozwalający zdefiniować relację jeden do wielu, gdzie jeden obiekt będzie powiadamiał wiele o zmianie, która może wystąpić w nieznanym czasie. Składa się z dwóch ról: \textit{Subject}, agregującego obserwatorów i posiadającego metody umożliwiające dodanie/usunięcie ich jak i metodę odpowiedzialną za powiadomienie obserwatorów. \textit{Observer} to obiekty reagujące na powiadomienia. W tym przypadku warto wydzielić metodę odpowiedzialną za powiadamianie do oddzielnego interfejsu, który będą implementować konkretni obserwatorzy.
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/observer.jpg}
+                        \caption{Diagram klas dla wzorca obserwatora}
+                        \label{fig:twojastara15}
+                    \end{figure}
+                    \item \textbf{Stan} pozwala na zdefiniowane różnych stanów obiektu poprzez użycie klas, implementujących interfejs. Ponieważ operacje interfejsu \textit{State} są polimorficzne, zatem wraz ze zmianą implementacji automatycznie zmienia się też ich funkcjonalność. W konsekwencji prowadzi to do sytuacji, w której zmiana stanu obiektów realizujących interfejs State powoduje zmianę zachowania metod obiektu klasy \textit{Context}. Oznacza to, że obiekt klasy Context pozornie zmienia klasę, do której należy. Dzięki temu można zdefiniować zachowanie obiektu Context w poszczególnych stanach poprzez nadpisywanie metod z abstrakcji State.
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/state.jpg}
+                        \caption{Diagram klas dla wzorca stan}
+                        \label{fig:twojastara16}
+                    \end{figure}
+                    \item \textbf{Strategia} to wzorzec pozwalający na ukrycie szczegółów implementacyjnych danej operacji oraz na zastąpienie tej implementacji inną poprzez zastosowanie innej klasy \textit{Strategy}. Klasa ta definuje sposób wywoływania algorytmu. Każda z klas pochodnych implementuje dany algorytm we własnym zakresie. Obiekt klasy \textit{Context} agreguje obiekty klas \textit{ConcreteStrategyA}, \textit{ConcreteStrategyB} oraz \textit{ConcreteStrategyC} odwołując się do nich poprzez klasę Strategy.
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/strategy.jpg}
+                        \caption{Diagram klas dla wzorca strategia}
+                        \label{fig:twojastara16}
+                    \end{figure}
+                    \item \textbf{Metoda szablonowa} pozwala na zdefiniowanie szkieletu algorytmu w klasie bazowej \textit{AbstractClass} (funkcja szablonowa), z wyodrębnieniem poszczególnych etapów do abstrakcyjnych funkcji (operacji prymitywnych) jako funkcji abstrakcyjnych, które będą implementowane w klasach dziedziczących \textit{ConcreteClass}. Pozwala to na stworzenie algorytmu, którego niektóre etapy są możliwe do modyfikacji poprzez stworzenie oddzielnych implementacji.
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/4]{images/template_method.jpg}
+                        \caption{Diagram klas dla wzorca metoda szablonowa}
+                        \label{fig:twojastara17}
+                    \end{figure}
+                    \item \textbf{Wizytator} może być używany w sytuacji, gdzie konieczne musi być dokonanie takiej samej operacji na wielu obiektach, które niekoniecznie interpretują ten sam interfejs lub należą do tej samej hierarchii. Obiekty klas realizujących abstrakcję \textit{Visitor} odwiedzają obiekty klas reprezentujących konkretne elementy systemu. Konkretny wizytator prosi konkretny odwiedzany obiekt o akceptację wizyty. Akceptacja polega na wywołaniu przez odwiedzany obiekt metody VisitConcreteElementA() lub VisitConcreteElementB().
+                    \begin{figure}[h]
+                        \centering
+                        \includegraphics[width=\textwidth/2]{images/visitor.jpg}
+                        \caption{Diagram klas dla wzorca wizytator}
+                        \label{fig:twojastara18}
+                    \end{figure}
+                \end{itemize}
+			\newpage\subsection{Wzorce architektoniczne.}
+				Zalety stosowania wzorców architektonicznych:
+                \begin{itemize}
+                    \item niezależność logiki od sposobu wyświetlania danych, 
+                    \item niezależność kodu od technologii, w której wykonana jest warstwa 
+                    prezentacji, 
+                    \item łatwą zamianę GUI (brak sztywnych powiązań między GUI a 
+                    dziedziną problemu).
+                \end{itemize}
+		      MVC - Model-View-Controller
+                Model-Widok-Kontroler jest obecnie jednym z najpopularniejszych 
+                wzorców architektonicznych. Ideą stosowania architektury opartej na 
+                wzorcu MVC jest odseparowanie logiki warstwy opisującej dziedzinę 
+                problemu od warstwy prezentacji. Elementem wiążącym jest element 
+                Kontrolera.
+                \begin{itemize}
+                    \item Model (ang. Model) - element odpowiedzialny za obsługę warstwy 
+                    opisującej dziedzinę problemu.
+                    \item Widok (ang. View) - element odpowiedzialny za obsługę warstwy 
+                    prezentacji.
+                    \item Kontroler (ang. Controller) - element odpowiedzialny za obsługę 
+                    żądań przychodzących od użytkowników.
+                \end{itemize}
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[width=\textwidth/2]{images/mvc.jpg}
+                    \caption{Schemat MVC}
+                    \label{fig:twojastara3}
+                \end{figure}
+                MVP - Model-View-Presenter
+                \begin{itemize}
+                    \item Model jest modelem danych (z dziedziny problemu) jakie maja być 
+                    prezentowane. 
+                    \item IView jest interfejsem widoku.
+                    \item ViewImplementation czyli implementacja Widoku to ogólnie mówiąc jest 
+                    tym co widzi użytkownik (interfejsem użytkownika). 
+                    \item Presenter jest łącznikiem pomiędzy Widokiem i Modelem. Kiedy zajdzie 
+                    jakieś zdarzenie w Widoku (np. kliknięcie przycisku) to obsługa zdarzenia 
+                    jest delegowana do Prezentera. Prezenter wykonuje odpowiednie operacje 
+                    używając do tego celu danych z Modelu. Następnie odpowiednio uaktualnia 
+                    Widok. Uogólniając – logika działania GUI (UI) zawiera się w Prezenterze
+                \end{itemize}
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[width=\textwidth/2]{images/mvp.jpg}
+                    \caption{Schemat MVP}
+                    \label{fig:twojastara4}
+                \end{figure}
+                MVVM - Model - View - ViewModel
+                \begin{itemize}
+                    \item \textbf{Widok} - Zadaniem widoku jest wyświetlanie danych – pełni on funkcję 
+                    prezentacyjną. Wszelka logika (kod) jest zawarty w Model lub 
+                    ViewModel. Widok w MVVM jest aktywny, ponieważ musi mieć wiedzę 
+                    na temat budowy ViewModel po to, aby poprawnie skonfigurować 
+                    odpowiednie powiązania.
+                    \item \textbf{ViewModel} - ViewModel stanowi klasę (lub komponent), która eksponuje Model dla 
+                    Widoku. Model, zawierający logikę biznesową nie jest przystosowany do 
+                    użycia w Widoku. ViewModel, oprócz danych oraz logiki, zawiera 
+                    komendy powiązane z elementami GUI w widoku.
+                    \item \textbf{Model} - Model reprezentuje dziedzinę problemu
+                \end{itemize}
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[width=\textwidth/4]{images/mvvm.jpg}
+                    \caption{Schemat MVVM}
+                    \label{fig:twojastara5}
+                \end{figure}
+                
 		\newpage\section{Systemy wbudowane i elektronika}
 			\subsection{\color{red}Różnice pomiędzy obsługą zdarzeń w przerwaniach sprzętowych a obsługą zdarzeń w pętli programowej.}
 				a
